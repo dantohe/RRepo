@@ -6,6 +6,10 @@ I am using those listed here:
 https://google.github.io/styleguide/Rguide.xml
 
 ##Resources
-Using R for introductory statistics
+1. Using R for introductory statistics 
 https://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf
+
+2. Coursera materials repo
+https://github.com/DataScienceSpecialization/courses
+
 
