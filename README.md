@@ -12,4 +12,8 @@ https://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf
 2. Coursera materials repo
 https://github.com/DataScienceSpecialization/courses
 
+3. Galton data
+http://wiener.math.csi.cuny.edu/UsingR/
+
+
 

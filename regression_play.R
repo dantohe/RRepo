@@ -84,3 +84,4 @@ install.packages("swirl")
 packageVersion("swirl")
 library(swirl)
 
+varChild <- var(galton$child)
