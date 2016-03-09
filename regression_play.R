@@ -79,3 +79,8 @@ g = g + geom_abline(intercept = 0, slope = 1 / rho, size = 2)
 g = g + xlab("Father's height, normalized")
 g = g + ylab("Son's height, normalized")
 g
+
+install.packages("swirl")
+packageVersion("swirl")
+library(swirl)
+
