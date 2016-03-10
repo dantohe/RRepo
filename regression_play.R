@@ -85,3 +85,18 @@ packageVersion("swirl")
 library(swirl)
 
 varChild <- var(galton$child)
+
+
+
+library(UsingR)
+data(diamond)
+library(ggplot2)
+g = ggplot(diamond, aes(x = carat, y = price))
+g = g + xlab("Mass (carats)")
+g = g + ylab("Price (SIN $)")
+g = g + geom_point(size = 7, colour = "black", alpha=0.5)
+g = g + geom_point(size = 5, colour = "blue", alpha=0.2)
+#regression line
+g = g + geom_smooth(method = "lm", colour = "black")
+g
+
