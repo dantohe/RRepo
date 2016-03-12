@@ -117,3 +117,4 @@ coef(fit)[1] + coef(fit)[2] * newx
 predict(fit, newdata = data.frame(carat=newx))
 
 
+
