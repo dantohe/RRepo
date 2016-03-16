@@ -161,10 +161,12 @@ g
 y <- diamond$price; x <- diamond$carat; n <- length(y)
 fit <- lm(y ~ x)
 summary(fit)$sigma
+
 sqrt(sum(resid(fit)^2) / (n - 2))
 
 #r-squared  - the percentage of the total variability that is explained by the model
-
+data(anscombe)
+example(anscombe)
 
 
 
