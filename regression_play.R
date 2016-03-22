@@ -158,6 +158,9 @@ g = g + xlab("X") + ylab("Residual")
 g
 
 
+
+
+
 #Finding residual variance estimates
 y <- diamond$price; x <- diamond$carat; n <- length(y)
 fit <- lm(y ~ x)
