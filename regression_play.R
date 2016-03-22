@@ -187,3 +187,13 @@ g = g + geom_ribbon(aes(ymin = lwr, ymax = upr, fill = interval), alpha = 0.2)
 g = g + geom_line()
 g = g + geom_point(data = data.frame(x = x, y=y), aes(x = x, y = y), size = 4)
 g
+
+#quiz 4
+library(MASS)
+?shuttle
+shuttle$use.binary <- as.integer(shuttle$use == "auto")
+fit <- glm(use.binary ~ wind - 1, data = shuttle, family = binomial)
+
+summary(fit)$coef
+
+unname(exp(coef(fit))[1]/exp(coef(fit))[2])
