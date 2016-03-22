@@ -188,7 +188,7 @@ g = g + geom_line()
 g = g + geom_point(data = data.frame(x = x, y=y), aes(x = x, y = y), size = 4)
 g
 
-#quiz 4
+#quiz 4 -q 1
 library(MASS)
 ?shuttle
 shuttle$use.binary <- as.integer(shuttle$use == "auto")
@@ -197,3 +197,32 @@ fit <- glm(use.binary ~ wind - 1, data = shuttle, family = binomial)
 summary(fit)$coef
 
 unname(exp(coef(fit))[1]/exp(coef(fit))[2])
+
+#q2
+fit <- glm(use.binary ~ wind + magn - 1, data = shuttle, family = binomial)
+exp(coef(fit))
+unname(exp(coef(fit))[1]/exp(coef(fit))[2])
+
+#q3
+fit <- glm(use.binary ~ wind + magn - 1, data = shuttle, family = binomial)
+exp(coef(fit))
+unname(exp(coef(fit))[1]/exp(coef(fit))[2])
+
+#q4
+fit <- glm(count ~ spray - 1, data = InsectSprays, family = poisson)
+coef.exp <- exp(coef(fit))
+unname(coef.exp[1] / coef.exp[2])
+
+
+#q5
+x <- seq(1, 1000, by = 1)
+t <- log(x)
+t2 <- log(10) + t
+y <- ppois(x, 2)
+
+fit1 <- glm(y ~ x + offset(t), family = poisson, data = InsectSprays)
+fit2 <- glm(y ~ x + offset(t2), family = poisson, data = InsectSprays)
+
+summary(fit1)$coef
+summary(fit2)$coef
+
