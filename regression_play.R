@@ -226,3 +226,24 @@ fit2 <- glm(y ~ x + offset(t2), family = poisson, data = InsectSprays)
 summary(fit1)$coef
 summary(fit2)$coef
 
+
+require(graphics)
+pairs(mtcars, main = "mtcars data")
+coplot(mpg ~ disp | as.factor(cyl), data = mtcars,
+       panel = panel.smooth, rows = 1)
+str(mtcars)
+head(mtcars)
+summary(mtcars)
+
+pairs(mpg ~ ., data=mtcars)
+
+#finding correlations
+cor(mtcars)
+
+library(Hmisc)
+rcorr(as.matrix(mtcars))
+
+library(corrgram)
+corrgram(mtcars, order=TRUE, lower.panel=panel.shade,
+         upper.panel=panel.pie, text.panel=panel.txt,
+         main="Car Milage Data in PC2/PC1 Order")

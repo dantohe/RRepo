@@ -1,22 +1,69 @@
 ---
-title: "RegressionModelCarsAndMPG"
+title: "Regression Model: Cars And MPG"
 author: "Daniel Antohe"
 date: "March 22, 2016"
 output: pdf_document
 ---
+#Executive Summary
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+You work for Motor Trend, a magazine about the automobile industry. Looking at a data set of a collection of cars, they are interested in exploring the relationship between a set of variables and miles per gallon (MPG) (outcome). They are particularly interested in the following two questions:  
+- Is an automatic or manual transmission better for MPG?  
+- Quantify the MPG difference between automatic and manual transmissions  
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+This brief analysis looks at the car transmission (automatic versus manual) and its impact on the fuel economy. We use mtcars dataset made available by Motor Trend Magazine (1974). Technically, we evaluate this relationship using linear regression.
+
+#The Data
+
+Loading the mtcars dataset, data frame with 32 observations on 11 variables (source: https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html).  
+
+[, 1]	mpg	Miles/(US) gallon  
+[, 2]	cyl	Number of cylinders  
+[, 3]	disp	Displacement (cu.in.)  
+[, 4]	hp	Gross horsepower  
+[, 5]	drat	Rear axle ratio  
+[, 6]	wt	Weight (1000 lbs)  
+[, 7]	qsec	1/4 mile time  
+[, 8]	vs	V/S  
+[, 9]	am	Transmission (0 = automatic, 1 = manual)  
+[,10]	gear	Number of forward gears  
+[,11]	carb	Number of carburetors  
+
 
 ```{r}
-summary(cars)
+data(mtcars)
+head(mtcars)
 ```
 
-You can also embed plots, for example:
+##Shapiro-Wilk Test - checking on population   
+Using Shapiro-Wilk Normality Test and getting a p-value = 0.1229 which tranlates in the fact that we cannot reject  reject the NULL hypothesis that the samples came from a normal distribution.  
 
-```{r, echo=FALSE}
-plot(cars)
+```{r}
+shapiro.test(mtcars$mpg)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+##T-test - comparing the means of MPG and type of transmission
+We get a very small p-value which translates in the fact that the difference in means is not by chance but indeed there is clear difference in these two populations. So we reject the NULL hypothesis: "these two samples have the same means."  
+```{r}
+t.test(mtcars$mpg, mtcars$am, var.equal=TRUE, paired=FALSE)
+```
+
+#Regression  Models
+
+
+```{r}
+initial.model <- lm(mpg ~., data= mtcars)
+best.model <- step(initial.model, direction = "both")
+summary(best.model)
+```
+
+
+
+
+#Appendix
+
+Pair plotting mpg relative to any other valibles describing the car.
+
+```{r}
+pairs(mpg ~ ., data=mtcars)
+```
+
