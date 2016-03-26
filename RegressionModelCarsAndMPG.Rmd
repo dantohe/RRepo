@@ -5,14 +5,12 @@ date: "March 22, 2016"
 output: pdf_document
 ---
 #Executive Summary
-
-You work for Motor Trend, a magazine about the automobile industry. Looking at a data set of a collection of cars, they are interested in exploring the relationship between a set of variables and miles per gallon (MPG) (outcome). They are particularly interested in the following two questions:  
+Scenario: you work for Motor Trend, a magazine about the automobile industry. Looking at a data set of a collection of cars, they are interested in exploring the relationship between a set of variables and miles per gallon (MPG) (outcome). They are particularly interested in the following two questions:  
 - Is an automatic or manual transmission better for MPG?  
 - Quantify the MPG difference between automatic and manual transmissions  
 
-This brief analysis looks at the car transmission (automatic versus manual) and its impact on the fuel economy. We use mtcars dataset made available by Motor Trend Magazine (1974). Technically, we evaluate this relationship using linear regression.
-
-We show clarly that the manual transmission has a clear advantage over the automatic one when it comes to MPG (miles per gallon) - see Figure 1.
+This brief analysis looks at the car transmission (automatic versus manual) and its impact on the fuel economy. We use mtcars dataset made available by Motor Trend Magazine (1974). Technically, we evaluate this relationship using linear regression.  
+Based on the dataset we show that the manual transmission has an advantage over the automatic one when it comes to MPG (miles per gallon) - see Figure 1.
 
 #The Data
 
@@ -90,7 +88,7 @@ g
 
 
 ```{r}
-par(mfrow=c(2, 2))
+# par(mfrow=c(2, 2))
 plot(best.model)
 
 ```
