@@ -1,6 +1,6 @@
 ---
 title: "Regression Model: Cars And MPG"
-author: "Daniel Antohe"
+author: "DA"
 date: "March 22, 2016"
 output: pdf_document
 ---
