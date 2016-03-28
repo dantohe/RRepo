@@ -247,3 +247,38 @@ library(corrgram)
 corrgram(mtcars, order=TRUE, lower.panel=panel.shade,
          upper.panel=panel.pie, text.panel=panel.txt,
          main="Car Milage Data in PC2/PC1 Order")
+
+install.packages("caret", dependencies = c("Depends", "Suggests"))
+library(caret)
+findCorrelation(cor(mtcars))
+
+install.packages("minqa")
+install.packages("caret")
+
+initial.model <- lm(mpg ~., data= mtcars)
+best.model <- step(initial.model, direction = "both")
+summary(best.model)
+
+shapiro.test(mtcars$mpg)
+
+install.packages('ggplot2', dep = TRUE)
+library(ggplot2)
+g = ggplot(mtcars, aes(factor(am), mpg, fill=factor(am)))
+g = g + geom_boxplot()
+g = g + geom_jitter(position=position_jitter(width=.1, height=0))
+g = g + scale_colour_discrete(name = "Type")
+g = g + scale_fill_discrete(name="Type", breaks=c("0", "1"),
+                            labels=c("Automatic", "Manual"))
+g = g + scale_x_discrete(breaks=c("0", "1"), labels=c("Automatic", "Manual"))
+g = g + xlab("")
+g
+
+
+n = 100; x = rnorm(n); x2 = rnorm(n); x3 = rnorm(n)
+plot(x)
+hist(x)
+y = 1 + x + x2 + x3 + rnorm(n, sd = .1)
+ey = resid(lm(y ~ x2 + x3))
+ex = resid(lm(x ~ x2 + x3))
+sum(ey * ex) / sum(ex ^ 2)
+
