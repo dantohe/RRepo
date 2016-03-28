@@ -281,4 +281,22 @@ y = 1 + x + x2 + x3 + rnorm(n, sd = .1)
 ey = resid(lm(y ~ x2 + x3))
 ex = resid(lm(x ~ x2 + x3))
 sum(ey * ex) / sum(ex ^ 2)
+coef(lm(ey ~ ex - 1))
+
+coef(lm(y ~ x + x2 + x3))
+
+require(datasets)
+data(swiss)
+?swiss
+
+summary(lm(Fertility ~ . , data = swiss))
+summary(lm(Fertility ~ . , data = swiss))$coeficients
+summary(lm(Fertility ~ Agriculture , data = swiss))
+
+n = 100; x2 <- 1 : n; x1 = .01 * x2 + runif(n, -.1, .1); y = -x1 + x2 + rnorm(n, sd = .01)
+
+summary(lm(y ~ x1))$coef
+summary(lm(y ~ x1 + x2))$coef
+
+library(ggplot2)
 
