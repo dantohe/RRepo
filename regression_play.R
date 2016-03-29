@@ -303,3 +303,13 @@ library(ggplot2)
 #including an unnecessary variable into the model
 z <- swiss$Agriculture + swiss$Education
 lm(Fertility ~ . +z, data = swiss)
+
+#insects spray
+require(datasets);data(InsectSprays); require(stats); require(ggplot2)
+g = ggplot(data = InsectSprays, aes(y = count, x = spray, fill = spray))
+g = g + geom_violin(colour = "black", size = 2)
+g = g + xlab("Type of spray") + ylab("Insect count")
+g
+
+summary(lm(count ~ spray, data = InsectSprays))$coef
+
