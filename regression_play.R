@@ -300,3 +300,6 @@ summary(lm(y ~ x1 + x2))$coef
 
 library(ggplot2)
 
+#including an unnecessary variable into the model
+z <- swiss$Agriculture + swiss$Education
+lm(Fertility ~ . +z, data = swiss)
