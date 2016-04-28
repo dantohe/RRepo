@@ -22,7 +22,6 @@ g
 
 ggplot(galton, aes(x = parent, y = child)) + geom_point()
 
-
 y <- galton$child - mean(galton$child)
 x <- galton$parent - mean(galton$parent)
 freqData <- as.data.frame(table(x, y))
@@ -313,3 +312,22 @@ g
 
 summary(lm(count ~ spray, data = InsectSprays))$coef
 
+spray2 <- relevel(InsectSprays$spray, "C")
+summary(lm(count~spray2, InsectSprays))$coef
+
+
+
+
+n =c(1,2,3,4,5,6,7,8,9,10)
+mean(n)
+median(n)
+var(n)
+n[c(1,2,8)]
+max(n)
+n==4
+
+which(n==3)
+n[3]=33
+n
+
+which()
