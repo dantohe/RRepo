@@ -342,3 +342,40 @@ n[n.b]
 n.indeces = 1:length(n)
 n.indeces
 n.indeces[n==33]
+#
+(1:length(n))[n==max(n)]
+(1:length(n))[n>=mean(n)]
+
+sum(n)
+sum(n>10)
+n
+n1=n
+n2=n
+n3=n1-n2
+n2[3]=0
+n3
+
+cummax(n)
+cummin(n)
+
+whale = c(74, 122, 235, 111, 292, 111, 211, 133, 156, 79)
+mean(whale)
+median(whale)
+var(whale)
+
+std = function(x) sqrt(var(x))
+std(n)
+std(whale)
+
+
+miles = c(65311, 65624, 65908, 66219, 66499, 66821, 67145, 67447)
+x = diff(miles)
+x
+
+max(miles)
+mean(x)
+cm = c(17, 16,20, 24, 22, 15, 21, 15, 17, 22)
+cm[which((cm==24))]=18
+
+
+
