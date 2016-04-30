@@ -398,5 +398,17 @@ table(x)
 
 beer = scan()
 #3 4 1 1 3 4 3 3 1 3 2 1 2 1 2 3 2 3 1 1 1 1 4 3 1
+barplot(beer)
+table(beer)
+barplot(table(beer))
+barplot(table(beer)/length(beer))
+
+b.c = table(beer)
+pie(b.c)
+names(b.c) = c("first","second","third", "fourth")
+pie(b.c, col = c("purple","red","yellow","green"))
+
+# a distribution is described by center (mean) and spread (variance)
+
 
 
