@@ -330,4 +330,15 @@ which(n==3)
 n[3]=33
 n
 
-which()
+which(n==33)
+n==33
+n[n==33]
+n[c(n==33)]
+n.b = n==33
+n.b
+n[n.b]
+
+#logical extraction - extraction by logical vector
+n.indeces = 1:length(n)
+n.indeces
+n.indeces[n==33]
