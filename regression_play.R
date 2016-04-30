@@ -376,6 +376,18 @@ max(miles)
 mean(x)
 cm = c(17, 16,20, 24, 22, 15, 21, 15, 17, 22)
 cm[which((cm==24))]=18
+sum(cm>20)
+which(cm>=20)
+cm_mod = cm
+cm.m = cm
+cm.m[which(cm.m>=20)] = 1000
+
+#finding percentage of commutes less than 17 minutes
+length(which(cm<17))*100/length(cm)
+
+bill = c(46, 33, 39, 37, 46, 30, 48, 32, 49, 35, 30, 48)
+
+
 
 
 
