@@ -492,6 +492,10 @@ library()
 library("datasets")
 data()
 
+#simple.hist.and.boxplot
+library(UsingR)
+
+
 
 
 
