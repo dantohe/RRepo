@@ -498,19 +498,10 @@ simple.hist.and.boxplot(m.comedy$budget)
 simple.freqpoly(m.comedy$rating)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+data("faithful")
+hist(faithful)
+hist(faithful$eruptions, probability = TRUE)
+simple.freqpoly(faithful$eruptions, main="Faithful Eruptions")
+lines(density(faithful$eruptions))
+lines(density(faithful$eruptions, bw="SJ"), col="red")
 
