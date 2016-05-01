@@ -504,4 +504,8 @@ hist(faithful$eruptions, probability = TRUE)
 simple.freqpoly(faithful$eruptions, main="Faithful Eruptions")
 lines(density(faithful$eruptions))
 lines(density(faithful$eruptions, bw="SJ"), col="red")
+f= scan()
+# remove NAs
+mean(f, na.rm = TRUE)
+mean(f[!is.na(f)])
 
