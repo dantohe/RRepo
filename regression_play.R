@@ -448,6 +448,8 @@ fivenum(x)
 install.packages("UsingR")
 
 library("Simple")
+
+# playing with movies 
 library(ggplot2movies)
 data(movies)
 head(movies)
@@ -467,6 +469,33 @@ boxplot(rating, main="rating")
 boxplot(rating, main="rating", horizontal = TRUE)
 names(movies)
 detach(movies)
+
+head(movies$Action)
+summary(movies$Animation)
+m.action = movies[movies$Action>0,]
+head(m.action)
+length(m.action)
+nrow(m.action)
+min(m.action$year)
+max(m.action$year)
+
+boxplot(m.action$year, main ="Action Movies by year")
+names(movies)
+m.comedy = movies[movies$Comedy>0,]
+nrow(m.comedy)
+summary(m.action$budget)
+summary(m.comedy$budget)
+boxplot(m.action$budget)
+
+#list all available packages
+library()
+library("datasets")
+data()
+
+
+
+
+
 
 
 
