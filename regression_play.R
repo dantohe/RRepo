@@ -410,5 +410,15 @@ pie(b.c, col = c("purple","red","yellow","green"))
 
 # a distribution is described by center (mean) and spread (variance)
 
+s = scan()
+mean(s)
+var(s)
+sd(s)
+median(s)
+fivenum(s)
+summary(s)
+
+
+
 
 
