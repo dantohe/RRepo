@@ -417,7 +417,34 @@ sd(s)
 median(s)
 fivenum(s)
 summary(s)
+n = c(1,2,3,100, 200)
+median(n)
+summary(n)
 
+
+mean(s)
+mean(s, trim = 1/10)
+IQR(s)
+
+sc = scan()
+
+sals = c(12, .4, 5, 2, 50, 8, 3, 1, 4, .25)
+sb = cut(sals, breaks = c(0,5,10,max(sals)))
+sb
+
+table(sb)
+
+sb
+str(sb)
+
+#movies gross income
+x = scan()
+hist(x)
+hist(x, probability = TRUE)
+rug(jitter(x))
+
+hist(x,100)
+fivenum(x)
 
 
 
