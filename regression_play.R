@@ -494,6 +494,10 @@ data()
 
 #simple.hist.and.boxplot
 library(UsingR)
+simple.hist.and.boxplot(m.comedy$budget)
+simple.freqpoly(m.comedy$rating)
+
+
 
 
 
