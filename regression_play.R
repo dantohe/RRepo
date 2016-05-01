@@ -445,6 +445,34 @@ rug(jitter(x))
 
 hist(x,100)
 fivenum(x)
+install.packages("UsingR")
+
+library("Simple")
+library(ggplot2movies)
+data(movies)
+head(movies)
+summary(movies)
+names(movies)
+max(movies$rating)
+min(movies$rating)
+mean(movies$rating)
+summary(movies$rating)
+
+names(movies)
+length(movies)
+str(movies)
+length(movies)
+attach(movies)
+boxplot(rating, main="rating")
+boxplot(rating, main="rating", horizontal = TRUE)
+names(movies)
+detach(movies)
+
+
+
+
+
+
 
 
 
