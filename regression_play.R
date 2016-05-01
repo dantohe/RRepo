@@ -509,3 +509,11 @@ f= scan()
 mean(f, na.rm = TRUE)
 mean(f[!is.na(f)])
 
+#calculate proportion of a decimal in pi200
+cal.prop = function(x) length(which(pi2000==x))/length(pi2000)*100
+#calculate the density plot
+plot(density(pi2000))
+polygon(density(pi2000), col="grey", border = "blue")
+
+
+
