@@ -515,5 +515,20 @@ cal.prop = function(x) length(which(pi2000==x))/length(pi2000)*100
 plot(density(pi2000))
 polygon(density(pi2000), col="grey", border = "blue")
 
+#bivariate categorical data experiments
+smokes = c("Y","N","N","Y","N","Y","Y","Y","N","Y")
+amount = c(1,2,2,3,3,1,2,1,3,2)
+table(smokes,amount)
+
+tmp=table(smokes,amount)
+old.digits = options("digits")
+options(digits=3) # only print 3 decimal places
+prop.table(tmp,1)
+
+prop.table(tmp,2)
+prop.table(tmp)
+#restore old digits
+options(digits=7)
+old.digits
 
 
