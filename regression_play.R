@@ -556,5 +556,18 @@ plot(homedata$y1970)
 plot( scale(homedata$y2000))
 
 ## linear regression
-# x predictor - y response
+# x predictor | y response
+#(measured y) - (predicted y) = residual
+#linear regression - find the b0 and bi that minimizes the sum of the sqaure residuals
+# USE LEAST SQAURE METHOD TO IDENTIFY THE b0 and bi that minimazies the sum of square residuals
+
+
+data("homedata")
+attach(home)
+x=old
+y=new
+plot(x,y)
+abline(lm(y~x))
+
+
 
