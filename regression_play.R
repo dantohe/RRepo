@@ -539,5 +539,6 @@ smokes
 barplot(table(smokes,amount), beside=TRUE, legend.text=T)
 barplot(table(amount,smokes),main="table(amount,smokes)",  beside=TRUE, legend.text=c("less than 5","5-10","more than 10"))
 
+#Handling bivariate data: categorical vs. numerical
 
 
