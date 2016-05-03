@@ -531,4 +531,13 @@ prop.table(tmp)
 options(digits=7)
 old.digits
 
+barplot(table(smokes,amount))
+barplot(table(amount,smokes))
+
+smokes=factor(smokes)
+smokes
+barplot(table(smokes,amount), beside=TRUE, legend.text=T)
+barplot(table(amount,smokes),main="table(amount,smokes)",  beside=TRUE, legend.text=c("less than 5","5-10","more than 10"))
+
+
 
