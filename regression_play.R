@@ -540,5 +540,21 @@ barplot(table(smokes,amount), beside=TRUE, legend.text=T)
 barplot(table(amount,smokes),main="table(amount,smokes)",  beside=TRUE, legend.text=c("less than 5","5-10","more than 10"))
 
 #Handling bivariate data: categorical vs. numerical
+x = c(5, 5, 5, 13, 7, 11, 11, 9, 8, 9)
+y = c(11, 8, 4, 5, 9, 5, 10, 5, 4, 10)
+boxplot(x,y)
 
+data("home")
+boxplot(scale(home$old), scale(home$new))
+
+plot(density(home$old))
+plot(density(home$new))
+
+data("homedata")
+plot(homedata$y1970, homedata$y2000)
+plot(homedata$y1970)
+plot( scale(homedata$y2000))
+
+## linear regression
+# x predictor - y response
 
