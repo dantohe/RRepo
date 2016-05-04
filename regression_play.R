@@ -568,6 +568,12 @@ x=old
 y=new
 plot(x,y)
 abline(lm(y~x))
+simple.lm(x,y)
+mr.res = simple.lm(x,y)
+coef(mr.res)
+simple.lm(x,y)
+simple.lm(x,y,show.residuals=TRUE)
+
 
 
 
