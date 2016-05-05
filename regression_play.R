@@ -629,6 +629,12 @@ lm(tread~miles)
 summary(lm(tread~miles))
 
 #exercises
+st=1:10
+q1 = c(3,3,3,4,3,4,3,4,3,4)
+length(q1)
+q2 = c(5,2,5,5,2,2,5,5,4,2)
+length(q2)
+
 
 
 
