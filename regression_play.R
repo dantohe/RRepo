@@ -633,10 +633,44 @@ st=1:10
 q1 = c(3,3,3,4,3,4,3,4,3,4)
 length(q1)
 q2 = c(5,2,5,5,2,2,5,5,4,2)
-length(q2)
+q3 = c(1,3,1,1,1,3,1,1,1,1)
+length(q3)
+table(q1)
+table(q2)
+barplot(q1)
+barplot(table(q1,q2), col = c("grey","red"))
+barplot(table(q2,q3), col = c("cyan","blue"))
+barplot(q1,q2,q3)
 
 
+library(MASS)
+data("UScereal")
+attach(UScereal)
+names(UScereal)
+help("UScereal")
+str(UScereal)
+head(UScereal)
+
+#finding a relationship between the shelf and the manufacturer
+plot(shelf,mfr)
+abline(lm(shelf~mfr))
+library(UsingR)
+simple.lm(shelf,mfr)
+simple.lm(mfr,shelf, show.residuals = TRUE)
+summary(simple.lm(shelf,mfr))
+summary(lm(shelf~mfr))
+#find the correlation
+#in order to calculate correlation I need to conver manufacturer to a number
+mfr.numeric = gsub('N',1,mfr)
+mfr.numeric = gsub('K',2,mfr.numeric)
+mfr.numeric = gsub('R',3,mfr.numeric)
+mfr.numeric = gsub('P',4,mfr.numeric)
+mfr.numeric = gsub('Q',5,mfr.numeric)
+mfr.numeric = as.numeric(mfr.numeric)
+mfr.numeric
+#calculating r sqaure
+cor(shelf,mfr.numeric)^2
 
 
-
+cor(shelf,mfr)
 
