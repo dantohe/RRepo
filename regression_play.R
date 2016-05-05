@@ -671,6 +671,18 @@ mfr.numeric
 #calculating r sqaure
 cor(shelf,mfr.numeric)^2
 
+plot(UScereal$sugars, UScereal$carbo)
+abline(lm(UScereal$sugars~UScereal$carbo))
+summary(lm(UScereal$sugars~UScereal$carbo))
 
 cor(shelf,mfr)
+
+plot(UScereal$fibre, UScereal$mfr)
+abline(lm(UScereal$fibre~UScereal$mfr))
+summary(lm(UScereal$fibre~UScereal$mfr))
+
+plot(UScereal$sodium, UScereal$sugars)
+abline(lm(UScereal$sodium~UScereal$sugars))
+summary(lm(UScereal$sodium~UScereal$sugars))
+
 
