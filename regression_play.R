@@ -574,6 +574,31 @@ coef(mr.res)
 simple.lm(x,y)
 simple.lm(x,y,show.residuals=TRUE)
 
+lm.res = simple.lm(x,y)
+the.residuals = resid(lm.res) # how to get residuals
+plot(the.residuals)
+
+#Values or R2 close to 1 indicate a strong linear relationship,
+#values close to 0 a weak one. (There still may be a relationship, just not a linear one.) In R the correlation coecient
+#is found with the cor function
+cor(x,y)
+cor(x,y)^2
+summary(lm(y~x))
+
+data("florida")
+help("florida")
+str(florida)
+simple.lm(BUSH,BUCHANAN)
+summary(simple.lm(BUSH,BUCHANAN))
+identify(BUSH,BUCHANAN,n=2)
+simple.lm(BUSH[-50],BUCHANAN[-50])
+summary(simple.lm(BUSH[-50],BUCHANAN[-50]))
+
+simple.lm(BUSH,BUCHANAN)
+abline(65.57350,0.00348)
+
+#Resistance in statistics means the procedure is resistant to some percentage of arbitrarily large outliers,
+
 
 
 
