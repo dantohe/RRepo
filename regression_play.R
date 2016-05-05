@@ -685,4 +685,17 @@ plot(UScereal$sodium, UScereal$sugars)
 abline(lm(UScereal$sodium~UScereal$sugars))
 summary(lm(UScereal$sodium~UScereal$sugars))
 
+#using mamals dataset
+data("mammals")
+help("mammals")
+summary(mammals)
+str(mammals)
+plot(mammals)
+plot(lm(mammals$brain~mammals$body))
+summary(lm(mammals$brain~mammals$body))
+simple.lm(mammals$brain, mammals$body)
+cor(mammals$brain,mammals$body)
+cor(mammals$brain,mammals$body)^2
+#r square is [-1,1] - in our case we have 0.8726621 which is close to 1 meaning is good
+
 
