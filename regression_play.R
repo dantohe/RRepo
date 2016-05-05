@@ -598,6 +598,38 @@ simple.lm(BUSH,BUCHANAN)
 abline(65.57350,0.00348)
 
 #Resistance in statistics means the procedure is resistant to some percentage of arbitrarily large outliers,
+#robustness
+#means the procedure is not greatly aected by slight deviations in the assumptions.
+detach(florida)
+
+library(MASS)
+attach(florida)
+plot(x)
+plot(BUSH,BUCHANAN)
+abline(lm(BUCHANAN ~ BUSH), lty=1)
+abline(rlm(BUCHANAN ~ BUSH),lty=2)
+legend(locator(1),legend=c('lm','rlm'),lty=1:2)
+
+plot(BUSH,BUCHANAN)
+abline(rlm(BUCHANAN ~ BUSH),lty=1)
+abline(rlm(BUCHANAN[-50] ~ BUSH[-50]),lty=2)
+
+#plotting a parabola
+x=seq(0,4,by=.1)
+plot(x, x^2, type="l")
+curve(x^2, 0,4)
+curve(x^3, 0,4)
+curve(log10(x), 0,4)
+
+miles = (0:8)*4
+tread = scan()
+plot(miles,tread)
+abline(lm(tread~miles))
+lm(tread~miles)
+summary(lm(tread~miles))
+
+#exercises
+
 
 
 
