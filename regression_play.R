@@ -741,5 +741,39 @@ h.lm = lm(homedata$y2000~homedata$y1970)
 to.predict = data.frame(y1970=75000)
 predict(h.lm, data.frame(x=seq(75000,0)))
 
+head(homedata)
+h2 = homedata
+nrow(h2)
+h2.p = predict(h.lm, h2)
+str(h2.p)
+par(mfrow=c(1,1))
+
+plot(homedata)
+?identify
+identify(homedata, n=3)
+#1809 2048 3529
+homedata[1809,]
+homedata[2048,]
+homedata[3529,]
+
+plot(homedata)
+plot(homedata[-2048])
+identify(homedata[-2048], n=2)
+
+#removing outliers
+homedata.no.outliers=homedata[-c(1809,2048,3529,220), ]
+plot(homedata.no.outliers)
+ slm = simple.lm(homedata.no.outliers$y2000, homedata.no.outliers$y1970)
+ summary(slm)
+
+
+
+
+row.has.zero = apply(homedata, 1, function(x){any(x==0)})
+sum(row.has.zero)
+sum(row.has.nan)
+clean.homedata = homedata[!row.has.na,]
+
+
 
 
