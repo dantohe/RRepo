@@ -697,5 +697,49 @@ simple.lm(mammals$brain, mammals$body)
 cor(mammals$brain,mammals$body)
 cor(mammals$brain,mammals$body)^2
 #r square is [-1,1] - in our case we have 0.8726621 which is close to 1 meaning is good
+plot(mammals$brain, mammals$body)
+plot(log(mammals$brain), log(mammals$body))
+abline(lm(log(mammals$brain)~log(mammals$body)))
+summary(lm(log(mammals$brain)~log(mammals$body)))
+
+#linear regression on home prices over time
+data("homedata")
+str(homedata)
+head(homedata)
+plot(homedata$y1970)
+plot(homedata$y2000)
+plot(homedata$y1970, homedata$y2000)
+abline(lm(homedata$y1970~homedata$y2000))
+abline(lm(homedata$y2000~homedata$y1970), col=2)
+plot(log(homedata$y1970), log(homedata$y2000))
+?abline
+
+
+#looks like we got NAs
+#check if there is any na
+apply(homedata,1,function(x) sum(is.na(x)))
+
+homedata.clea = complete.cases(homedata)
+homedata.clean = na.omit(homedata)
+nrow(homedata)
+nrow(homedata.clea)
+head(homedata.clea)
+nrow(homedata.clean)
+
+row.has.na <- apply(homedata, 1, function(x){any(is.na(x))})
+row.has.nan <- apply(homedata, 1, function(x){any(is.nan(x))})
+sum(row.has.na)
+sum(row.has.nan)
+clean.homedata = homedata[!row.has.na,]
+nrow(clean.homedata)
+
+plot(homedata$y2000, homedata$y1970)
+abline(lm(homedata$y2000~homedata$y1970), col=2)
+
+summary(lm(homedata$y2000~homedata$y1970))
+h.lm = lm(homedata$y2000~homedata$y1970)
+to.predict = data.frame(y1970=75000)
+predict(h.lm, data.frame(x=seq(75000,0)))
+
 
 
