@@ -763,16 +763,47 @@ identify(homedata[-2048], n=2)
 #removing outliers
 homedata.no.outliers=homedata[-c(1809,2048,3529,220), ]
 plot(homedata.no.outliers)
- slm = simple.lm(homedata.no.outliers$y2000, homedata.no.outliers$y1970)
- summary(slm)
+simple.lm(homedata.no.outliers$y2000, homedata.no.outliers$y1970)
+?simple.lm
+slm = simple.lm(homedata.no.outliers$y2000, homedata.no.outliers$y1970)
+summary(slm)
+plot(lm(homedata.no.outliers$y2000~homedata.no.outliers$y1970))
 
-
+plot(homedata.no.outliers)
+abline(lm(homedata.no.outliers$y2000~homedata.no.outliers$y1970), col=3)
 
 
 row.has.zero = apply(homedata, 1, function(x){any(x==0)})
 sum(row.has.zero)
 sum(row.has.nan)
 clean.homedata = homedata[!row.has.na,]
+
+
+#using LR for prediction
+x = rnorm(100)
+y = x + rnorm(100)
+plot(y,x)
+abline(lm(y~x), col=2)
+summary(lm(y~x))
+simple.lm(y,x)
+new <- data.frame(x = 100)
+predict(lm(y ~ x), new)
+predict(lm(y ~ x), new, se.fit = TRUE)
+pred.w.plim <- predict(lm(y ~ x), new, interval = "prediction")
+pred.w.clim <- predict(lm(y ~ x), new, interval = "confidence")
+matplot(new$x, cbind(pred.w.clim, pred.w.plim[,-1]),
+        lty = c(1,2,2,3,3), type = "l", ylab = "predicted y")
+
+predict(lm(homedata.no.outliers$y2000~homedata.no.outliers$y1970), data.frame(y1970=75000))
+
+#predicting the home value
+x = homedata.no.outliers$y1970
+y = homedata.no.outliers$y2000
+predict(lm(y ~ x), data.frame(x=75000))
+
+
+
+
 
 
 
