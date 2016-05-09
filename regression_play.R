@@ -822,12 +822,47 @@ summary(lm(florida.no.outliers$BUCHANAN~florida.no.outliers$BUSH))
 simple.lm(florida.no.outliers$BUCHANAN, florida.no.outliers$BUSH)
 ?simple.lm
 
-
+#working on CO2 emissions per capita
 setwd("r:/data/GD/OurDocuments/family/Daniel/US_education/Coursera/Regression Models/repository/RRepo")
 library(UsingR)
 data(emissions)
 str(emissions)
 head(emissions)
+#predictor per-capita GDP
+#response CO2
 
+simple.lm(emissions$perCapita, emissions$CO2)
+
+plot(emissions$perCapita, emissions$CO2)
+lm.em.perCapita=lm(emissions$CO2~emissions$perCapita)
+lm.em.perCapita2=lm(emissions$perCapita~emissions$CO2)
+abline(lm.em.perCapita, col=2)
+abline(lm.em.perCapita2)
+summary(lm.em.perCapita)
+
+#identify the outliner 
+identify(emissions$perCapita, emissions$CO2)
+emissions.no.outliers = emissions[-c(1,7),]
+nrow(emissions)
+nrow(emissions.no.outliers)
+
+#building the regression model w/o the outliers
+plot(emissions.no.outliers$perCapita, emissions.no.outliers$CO2)
+model1 = lm(emissions$CO2~emissions$perCapita)
+model2 = lm(emissions.no.outliers$CO2~emissions.no.outliers$perCapita)
+abline(model2, col=5)
+summary(model1)
+
+#removing more outliers
+identify(emissions.no.outliers$perCapita, emissions.no.outliers$CO2, n=2)
+summary(model2)
+emissions.no.outliers.2 = emissions.no.outliers[-c(1,2),]
+nrow(emissions.no.outliers.2)
+
+plot(emissions.no.outliers.2$perCapita, emissions.no.outliers.2$CO2)
+model1 = lm(emissions$CO2~emissions$perCapita)
+model3 = lm(emissions.no.outliers.2$CO2~emissions.no.outliers.2$perCapita)
+abline(model3, col=5)
+summary(model3)
 
 
