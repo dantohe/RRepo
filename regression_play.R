@@ -892,4 +892,7 @@ model2 = lm(y~x)
 abline(model2, col=2)
 simple.lm(x,y)
 summary(model2)
+plot(y~x)
+
+
 
