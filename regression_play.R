@@ -874,5 +874,22 @@ cor(babies$wt,babies$age)
 cor(babies$age,babies$wt)
 cor(babies$gestation,babies$wt)
 cor(babies$wt,babies$gestation)
+plot(babies$gestation, babies$wt)
+abline(lm(babies$wt~babies$gestation))
+?simple.lm
+model1 = simple.lm(babies$gestation, babies$wt)
+model1
+summary(model1)
 
+
+###create a dataset
+#predictor
+x=rnorm(50)
+#response variable
+y = 20 + x*2
+plot(x,y)
+model2 = lm(y~x)
+abline(model2, col=2)
+simple.lm(x,y)
+summary(model2)
 
