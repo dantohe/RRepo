@@ -801,10 +801,33 @@ x = homedata.no.outliers$y1970
 y = homedata.no.outliers$y2000
 predict(lm(y ~ x), data.frame(x=75000))
 
+simple.lm(x,y, pred = 75000)
 
 
+#using florida election data set
+data("florida")
+help(florida)
+str(florida)
+plot(florida$BUSH, florida$BUCHANAN)
+abline(lm(florida$BUCHANAN~florida$BUSH))
+identify(florida$BUSH, florida$BUCHANAN, n=2)
+florida.no.outliers = florida[-c(13,50),]
+nrow(florida)
+nrow(florida.no.outliers)
+plot(florida$BUSH, florida$BUCHANAN)
+
+simple.lm(florida$BUCHANAN,florida$BUSH)
+summary(lm(florida$BUCHANAN~florida$BUSH))
+summary(lm(florida.no.outliers$BUCHANAN~florida.no.outliers$BUSH))
+simple.lm(florida.no.outliers$BUCHANAN, florida.no.outliers$BUSH)
+?simple.lm
 
 
+setwd("r:/data/GD/OurDocuments/family/Daniel/US_education/Coursera/Regression Models/repository/RRepo")
+library(UsingR)
+data(emissions)
+str(emissions)
+head(emissions)
 
 
 
