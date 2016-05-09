@@ -865,4 +865,14 @@ model3 = lm(emissions.no.outliers.2$CO2~emissions.no.outliers.2$perCapita)
 abline(model3, col=5)
 summary(model3)
 
+########################################## correlation
+data("babies")
+help("babies")
+names(babies)
+# correlation between age and weight - age as predictor and weight as response
+cor(babies$wt,babies$age)
+cor(babies$age,babies$wt)
+cor(babies$gestation,babies$wt)
+cor(babies$wt,babies$gestation)
+
 
