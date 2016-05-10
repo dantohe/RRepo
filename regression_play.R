@@ -915,5 +915,52 @@ plot(c$mpg~c$cyl)
 abline(lm(c$cyl~c$mpg), col=2)
 summary(lm(c$mpg~c$cyl))
 
+#multivariate data
+weight = c(150, 135, 210, 140)
+height = c(65, 61, 70, 65)
+gender = c("Fe","Fe","M","Fe")
+study = data.frame(weight,height,gender) # make the data frame
 
+str(study)
+study
+row.names(study)<-c("Mary","Alice","Bob","Judy")
+study["Bob",]
+study[,1:3]
+study[,'gender']
+study[study$gender == 'Fe',]
+
+data("PlantGrowth")
+help("PlantGrowth")
+require(stats); require(graphics)
+boxplot(weight ~ group, data = PlantGrowth, main = "PlantGrowth data",
+        ylab = "Dried weight of plants", col = "lightgray",
+        notch = TRUE, varwidth = TRUE)
+anova(lm(weight ~ group, data = PlantGrowth))
+
+boxplot(unstack(PlantGrowth))
+boxplot(unstack(myData))
+myData = cbind(mtcars$cyl, mtcars$mpg)
+myData
+#The response variable is on the left hand
+#side and the predictor on the righ
+#like y ~ x (x is the predictor and y is the response)
+boxplot(PlantGrowth$weight~PlantGrowth$group)
+library(MASS)
+data("Cars93")
+help("Cars93")
+attach(Cars93)
+price = cut(Price,c(0,12,20,max(Price)))
+head(price)
+str(price)
+levels(price)=c("cheap","okay","expensive")
+mpg = cut(MPG.highway,c(0,20,30,max(MPG.highway)))
+levels(mpg) = c("gas guzzler","okay","miser")
+
+table(Type)
+table(price,Type)
+table(price,Type,mpg)
+
+barplot(table(price,Type),beside=T)
+barplot(table(Type,price),beside=T) # type by different prices
+detach(Cars93)
 
