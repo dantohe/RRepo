@@ -894,5 +894,26 @@ simple.lm(x,y)
 summary(model2)
 plot(y~x)
 
+# linear regression using cars data set
+data("mtcars")
+names(mtcars)
+help("mtcars")
+#maximum mpg
+max(mtcars$mpg)
+head(mtcars[order(-mtcars$mpg),], n=1)
+head(mtcars, n=5)
+str(mtcars)
+c = mtcars
+head(c)
+ncol(c)
+c["Valiant",]
+c["Valiant",]$hp
+plot(c$cyl~c$mpg)
+abline(lm(c$cyl~c$mpg))
+abline(lm(c$mpg~c$cyl))
+plot(c$mpg~c$cyl)
+abline(lm(c$cyl~c$mpg), col=2)
+summary(lm(c$mpg~c$cyl))
+
 
 
