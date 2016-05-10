@@ -983,3 +983,16 @@ stripchart(x ~ y)
 par(mfrow=c(1,3))
 data("InsectSprays")
 boxplot(InsectSprays$count~InsectSprays$spray,  col ='lightgrey')
+simple.violinplot(count ~ spray, data = InsectSprays, col = "lightgray")
+simple.densityplot(count ~ spray, data = InsectSprays)
+
+plot(x,y)
+points(x,z,pch="2")
+
+#tooth growth
+data("ToothGrowth")
+plot(ToothGrowth$len~ToothGrowth$dose)
+plot(ToothGrowth$len~ToothGrowth$dose, pch = as.numeric(ToothGrowth$supp))
+tmp = levels(ToothGrowth$supp)
+legend(locator(1),legend=tmp,pch=1:length(tmp))
+
