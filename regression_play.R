@@ -964,3 +964,22 @@ barplot(table(price,Type),beside=T)
 barplot(table(Type,price),beside=T) # type by different prices
 detach(Cars93)
 
+#boxplotting
+y=rnorm(1000)
+length(y)
+head(y)
+f = factor(rep(1:10, 100))
+length(f)
+str(f)
+head(f)
+boxplot(y~f, main="some bx")
+
+#stricharting
+x = rnorm(100)
+y = factor(rep(1:10,10))
+stripchart(x ~ y)
+
+#some cools graphs
+par(mfrow=c(1,3))
+data("InsectSprays")
+boxplot(InsectSprays$count~InsectSprays$spray,  col ='lightgrey')
