@@ -1019,5 +1019,39 @@ plot.regression = function(x,y) {
 }
 trellis.device(color = "white")
 xyplot(MPG.highway ~ Fuel.tank.capacity | Type, panel = plot.regression)
+detach()
+
+
+
+####### playing again on the emissions
+
+data("emissions")
+help("emissions")
+plot(emissions$perCapita, emissions$CO2)
+
+getwd()
+library(UsingR)
+data("emissions")
+setwd("R:/data/GD/OurDocuments/family/Daniel/US_education/Coursera/Regression Models/repository/RRepo")
+plot(emissions$perCapita, emissions$CO2)
+identify(emissions$perCapita, emissions$CO2, n=1)
+e = emissions[-1,]
+nrow(e)
+nrow(emissions)
+plot(e$perCapita, e$CO2)
+pairs(e)
+
+
+data("chips")
+help("chips")
+head(chips)
+boxplot(chips)
+
+data("chicken")
+boxplot(chicken)
+
+data("carbon")
+help("carbon")
+boxplot(Monoxide ~ Site,data=carbon)
 
 
