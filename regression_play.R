@@ -1054,4 +1054,17 @@ data("carbon")
 help("carbon")
 boxplot(Monoxide ~ Site,data=carbon)
 
+data("babies")
+pairs(babies)
+help("babies")
+simple.scatterplot(babies$gestation, babies$wt)
+simple.scatterplot(babies$wt, babies$gestation, pch = babies$smoke)
+
+
+#generating random data
+?sample
+rollDie = function(x) sample(1:6, x, replace = T)
+table(rollDie(100))
+
+
 
