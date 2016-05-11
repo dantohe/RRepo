@@ -996,4 +996,19 @@ plot(ToothGrowth$len~ToothGrowth$dose, pch = as.numeric(ToothGrowth$supp))
 tmp = levels(ToothGrowth$supp)
 legend(locator(1),legend=tmp,pch=1:length(tmp))
 
-#CO2 emission and GPD-per-capita nalysis
+#CO2 emission and GPD-per-capita nalysis 2
+data("emissions")
+simple.scatterplot(emissions$perCapita, emissions$CO2)
+title("Emissions vs. GDP per capita")
+head(emissions)
+emissions[emissions$CO2== max(emissions$CO2),]
+e = emissions
+nrow(e)
+e = rbind(e,"xCountry"=c(NA,100,1000))
+nrow(e)
+e
+nrow(na.omit(e))
+pairs(emissions)
+
+
+
