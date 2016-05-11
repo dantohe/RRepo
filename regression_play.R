@@ -996,3 +996,4 @@ plot(ToothGrowth$len~ToothGrowth$dose, pch = as.numeric(ToothGrowth$supp))
 tmp = levels(ToothGrowth$supp)
 legend(locator(1),legend=tmp,pch=1:length(tmp))
 
+#CO2 emission and GPD-per-capita nalysis
