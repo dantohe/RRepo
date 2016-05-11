@@ -1010,5 +1010,14 @@ e
 nrow(na.omit(e))
 pairs(emissions)
 
+library(lattice)
+attach(Cars93)
+xyplot(MPG.highway ~ Fuel.tank.capacity | Type)
+plot.regression = function(x,y) { 
+        panel.xyplot(x,y)  
+        panel.abline(lm(y~x))
+}
+trellis.device(color = "white")
+xyplot(MPG.highway ~ Fuel.tank.capacity | Type, panel = plot.regression)
 
 
