@@ -1066,5 +1066,15 @@ simple.scatterplot(babies$wt, babies$gestation, pch = babies$smoke)
 rollDie = function(x) sample(1:6, x, replace = T)
 table(rollDie(100))
 
+sample(1:3, 5, replace = T)
+sample(1:6, 6)
+
+#random numbers genrations are described by a distribution - a distribution is a function 
+#that specifies probabilities that a random number is in a specific range
+# distribution probability density - continuos
+
+# uniform distribution - all the values are equaly likely - die roll
+
+
 
 
