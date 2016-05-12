@@ -1081,7 +1081,13 @@ runif(4,0,1000)
 
 x= runif(100)
 hist(x)
-hist(x, probability = TRUE)
+hist(x, probability = TRUE, col = gray(0.9))
+curve(dunif(x,0,1),add=T)
+hist(x, col = gray(0.9))
+
+#normal distribution - central limit theorem
+#described by mean and standard deviation
+
 
 
 
