@@ -1074,6 +1074,15 @@ sample(1:6, 6)
 # distribution probability density - continuos
 
 # uniform distribution - all the values are equaly likely - die roll
+runif(1,0,2)
+?runif
+runif(6,1,6)
+runif(4,0,1000)
+
+x= runif(100)
+hist(x)
+hist(x, probability = TRUE)
+
 
 
 
