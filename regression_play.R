@@ -1087,6 +1087,34 @@ hist(x, col = gray(0.9))
 
 #normal distribution - central limit theorem
 #described by mean and standard deviation
+x= rnorm(1000, 100, 16)
+hist(x, probability = T, col = gray(1), main = "mean at 100, sd at 16", xlab = "IQ")
+curve(dunif(x,0,1),add=T)
+
+#binomial distribution
+
+rbinom(10, 10, 0.5)
+hist(rbinom(1000, 10, 0.5))
+
+n=5;p=.25
+x=rbinom(100,n,p)
+hist(x,probability=TRUE)
+xvals=0:n;points(xvals,dbinom(xvals,n,p),type="h",lwd=3)
+points(xvals,dbinom(xvals,n,p),type="p",lwd=3)
+
+hist(rbinom(10,1,.1),probability=TRUE)
+rbinom(10,1,.5)
+
+#bbotstraping
+data("faithful")
+help("faithful")
+head(faithful)
+eruptions = faithful[['eruptions']]
+head(eruptions)
+plot(faithful$waiting,faithful$eruptions)
+abline(lm(faithful$eruptions~faithful$waiting))
+simple.lm(faithful$waiting,faithful$eruptions)
+summary(lm(faithful$eruptions~faithful$waiting))
 
 
 
