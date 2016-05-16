@@ -1116,7 +1116,36 @@ abline(lm(faithful$eruptions~faithful$waiting))
 simple.lm(faithful$waiting,faithful$eruptions)
 summary(lm(faithful$eruptions~faithful$waiting))
 
+#sampling the erruptions
+sample(faithful$eruptions, 10, replace = T)
+hist(faithful$eruptions)
+par(mfrow=c(1,2))
+hist(faithful$eruptions, 
+     breaks = 25, col = "grey", 
+     main = "f erruptions", 
+     xlim = c(1,5), 
+     ylim = c(0,50))
 
+hist(sample(faithful$eruptions, 100, replace = T), 
+     breaks = 25, col = "grey", 
+     main = "f erruptions", 
+     xlim = c(1,5), 
+     ylim = c(0,50))
+length(faithful$eruptions)
+
+pnorm(10,1,1)
+hist(rnorm(1000,1,1))
+
+pnorm(0.7)
+pnorm(0.7, lower.tail = F)
+
+x = rnorm(10, 0, 10)
+x
+max(x)
+min(x)
+sample(1:10, 10, replace=T)
+
+hist(sample(1:10, 1000, replace=T), probability = T)
 
 
 
