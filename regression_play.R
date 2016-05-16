@@ -1144,8 +1144,22 @@ x
 max(x)
 min(x)
 sample(1:10, 10, replace=T)
-
 hist(sample(1:10, 1000, replace=T), probability = T)
+
+#intelligence quotient 
+par(mfrow=c(1,1))
+x =rnorm(1000000, 100, 16)
+hist(x, probability = T)
+lines(density(x))
+lines(density(x, adjust=2), lty= "dotted" )
+
+x = rnorm(10,5,5)
+x<0
+#Generate 100 random normal numbers with mean 100 and standard deviation 10. How many are 2 standard
+#deviations from the mean (smaller than 80 or bigger than 120)?
+
+
+
 
 
 
