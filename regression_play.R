@@ -1168,12 +1168,31 @@ x[x<80]
 length(c(x[x>120], x[x<80]))
 
 #Toss a fair coin 50 times (using R). How many heads do you have?
+x = rbinom(50, 1, .5)
+length(x[x==1])
 
+#Roll a \die" 100 times. How many 6's did you see?
+x = sample(1:6, 100, replace = T)
+length(x[x==6])
 
+#Select 6 numbers from a lottery containing 49 balls. What is the largest number? What is the smallest? Answer
+#these using R.
+x= sample(1:49, 6)
+x
+max(x)
 
+#6.7 For normal(0,1), and 
+#a number solving P(Z z) = :05 (use qnorm).
 
+qnorm(.05, 0,1)
+pnorm(1.5, 0,2)
+(1-pnorm(140, 100, 16))*100
 
+pnorm(140, 100, 16, lower.tail = F)
 
-
-
+#IQ
+#what is the probability that an idividual has the IQ=140
+pnorm(140, 100, 16)
+#what is the IQ of a person who has the IQ greater than 99%
+qnorm(.99,100,16)
 
