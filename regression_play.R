@@ -1157,6 +1157,19 @@ x = rnorm(10,5,5)
 x<0
 #Generate 100 random normal numbers with mean 100 and standard deviation 10. How many are 2 standard
 #deviations from the mean (smaller than 80 or bigger than 120)?
+x = rnorm(100, 100, 10)
+hist(x, probability = T, col = "lightgrey")
+lines(density(x))
+qnorm(.8, 100, 10)
+
+length(x)
+x[x>120]
+x[x<80]
+length(c(x[x>120], x[x<80]))
+
+#Toss a fair coin 50 times (using R). How many heads do you have?
+
+
 
 
 
