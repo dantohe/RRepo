@@ -1196,3 +1196,13 @@ pnorm(140, 100, 16)
 #what is the IQ of a person who has the IQ greater than 99%
 qnorm(.99,100,16)
 
+
+#Make a histogram of 100 exponential numbers 
+#with mean 10. Estimate the median. Is it more or less than the
+#mean?
+x = rexp(100,.1)
+hist(rexp(100,.1))
+median(rexp(100,.1))
+mean(rexp(100,.1))
+
+rnorm(5,mean=0,sd=1:5)
