@@ -1206,3 +1206,26 @@ median(rexp(100,.1))
 mean(rexp(100,.1))
 
 rnorm(5,mean=0,sd=1:5)
+
+#Use R to pick 5 cards from a deck of 52. 
+#Did you get a pair or better? Repeat until you do. How long did it
+#take?
+x= 2:14
+y =c(x,x,x,x)
+length(y)
+sample(y, size = 5)
+
+#looping
+result = numeric(0)
+for(i in 1:10){
+        result[i]=i
+}
+result
+
+for(i in result) print(result[i])
+
+
+#playing around the Central Limit Theorem
+
+
+
