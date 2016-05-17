@@ -1227,5 +1227,37 @@ for(i in result) print(result[i])
 
 #playing around the Central Limit Theorem
 
+x=rnorm(1000000, 100, 16)
 
+
+hist(x, probability = T)
+mean.of.samples = numeric(0)
+
+sample.size=10
+number.of.samples=10000
+
+for(i in 1:number.of.samples){
+        current.sample = sample(x,sample.size)
+        mean.of.samples[i] = mean(current.sample)
+}
+hist(mean.of.samples, col = "lightgrey",
+     probability = T,  main = "CLT: the histogram mean of samples")
+lines(density(mean.of.samples))
+
+x=rnorm(10000, 100, 16)
+x=runif(10000, 50,140)
+CLT.play(x, 100, 1000)
+
+
+CLT.play = function(input, sample.size, number.of.samples){
+        
+        for(i in 1:number.of.samples){
+                current.sample = sample(x,sample.size)
+                mean.of.samples[i] = mean(current.sample)
+        }
+        hist(mean.of.samples, col = "lightgrey",
+             probability = T,  main = "CLT: the histogram mean of samples")
+        lines(density(mean.of.samples))
+        
+}
 
