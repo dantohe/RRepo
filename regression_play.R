@@ -1272,5 +1272,58 @@ x = rnorm(100,10,15);qqnorm(x,main='normal(10,15)');qqline(x)
 x = rexp(100,1/10);qqnorm(x,main='exponential mu=10');qqline(x)
 x = runif(100,0,1);qqnorm(x,main='unif(0,1)');qqline(x)
 
+# a normal probability plot for IQ
+#quantiles of our data against the quantiles of a normal distribution
 
+x = rnorm(1000,100,16);qqnorm(x,main='normal(100,16)');qqline(x)
+
+#simulation exercises
+n=10;p=.25;S= rbinom(1,n,p)
+(S - n*p)/sqrt(n*p*(1-p))
+S
+n = 10;p = .25;S = rbinom(100,n,p)
+X = (S - n*p)/sqrt(n*p*(1-p)) # has 100 random numbers
+hist(X,prob=T)
+
+#2
+x=rnorm(10, 10, 10)
+x=rnorm(10000, 100, 100)
+result = CLT.play(x, 5, 5)
+
+simple.eda(x)
+data("homedata")
+simple.eda(homedata)
+qqnorm(homedata$y1970);qqline(homedata$y1970)
+simple.eda(homedata$y1970);simple.eda(homedata$y2000)
+#heavy tail - skewed - consider transformation
+
+
+data("exec.pay")
+?exec.pay
+plot(exec.pay)
+hist(exec.pay)
+simple.eda(exec.pay)
+#because data is skewed we do a transfomration
+log.exec.pay = log(exec.pay[exec.pay>0])/log(10)
+simple.eda(log.exec.pay)
+
+###symetric
+#short
+X=runif(100);boxplot(X,horizontal=T,bty=n)
+
+#regular
+X=rnorm(100);boxplot(X,horizontal=T,bty=n)
+
+#long
+X=rt(100,2);boxplot(X,horizontal=T,bty=n)
+
+###skewed
+#short
+X=sample(1:6,100,p=7-(1:6),replace=T);boxplot(X,horizontal=T,bty=n)
+
+#regular
+X=abs(rnorm(200));boxplot(X,horizontal=T,bty=n)
+
+#long
+X=rexp(200);boxplot(X,horizontal=T,bty=n)
 
