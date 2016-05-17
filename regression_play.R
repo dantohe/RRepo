@@ -1246,11 +1246,15 @@ lines(density(mean.of.samples))
 
 x=rnorm(10000, 100, 16)
 x=runif(10000, 50,140)
-CLT.play(x, 100, 1000)
+result = CLT.play(x, 100, 10000)
+length(result)
+mean(result)
+sd(result)
+4/sqrt(10)
 
 
 CLT.play = function(input, sample.size, number.of.samples){
-        
+        mean.of.samples = numeric(0)
         for(i in 1:number.of.samples){
                 current.sample = sample(x,sample.size)
                 mean.of.samples[i] = mean(current.sample)
@@ -1258,6 +1262,15 @@ CLT.play = function(input, sample.size, number.of.samples){
         hist(mean.of.samples, col = "lightgrey",
              probability = T,  main = "CLT: the histogram mean of samples")
         lines(density(mean.of.samples))
-        
+        return(mean.of.samples)
 }
+
+###########
+#normal plots
+x = rnorm(100,0,1);qqnorm(x,main='normal(0,1)');qqline(x)
+x = rnorm(100,10,15);qqnorm(x,main='normal(10,15)');qqline(x)
+x = rexp(100,1/10);qqnorm(x,main='exponential mu=10');qqline(x)
+x = runif(100,0,1);qqnorm(x,main='unif(0,1)');qqline(x)
+
+
 
