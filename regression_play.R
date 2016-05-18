@@ -1385,18 +1385,6 @@ simple.eda(trees$Girth)
 simple.eda(trees$Height)
 simple.eda(trees$Volume)
 
-#Black-Scholes theory analysis
-data("dowdata")
-help("dowdata")
-head(dowdata)
-x = dowdata[['Close']]
-n = length(x)
-z = log(x[2:n]/x[1:(n-1)])
-simple.eda(z)
-
-
-
-
 #The Simple data set slc contains data on red 
 #blood cell sodium-lithium countertransport activity for 190
 #individuals. Describe the shape of the distribution, 
@@ -1416,3 +1404,28 @@ z = rt(100,25)
 hist(x)
 hist(y)
 hist(z)
+
+
+
+#Black-Scholes theory analysis
+data("dowdata")
+help("dowdata")
+head(dowdata)
+x = dowdata[['Close']]
+n = length(x)
+z = log(x[2:n]/x[1:(n-1)])
+simple.eda(z)
+
+
+#Chutes and Ladders
+results=c()
+for(i in 1:200) results[i]=length(simple.chutes(sim=TRUE))
+hist(results)
+plot(simple.chutes(1))
+simple.eda(results)
+mean(results)
+median(results)
+qqnorm(results); qqline(results)
+
+
+
