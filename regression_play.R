@@ -1327,3 +1327,81 @@ X=abs(rnorm(200));boxplot(X,horizontal=T,bty=n)
 #long
 X=rexp(200);boxplot(X,horizontal=T,bty=n)
 
+#Attach the data set babies . Describe the distributions of 
+#the variables birth weight (bwt), gestation, age,
+#height and weight.
+data("babies")
+par(mfrow=c(1,1))
+qqnorm(babies$wt);qqline(babies$wt)
+log.babies.wt = log(babies$wt[babies$wt>0])/log(10)
+
+qqnorm(log.babies.wt);qqline(log.babies.wt)
+boxplot(babies$wt, horizontal = T)
+
+#weight
+par(mfrow=c(1,2))
+qqnorm(babies$wt, main = "a normal plot");qqline(babies$wt)
+boxplot(babies$wt, horizontal = T)
+
+#gestation
+par(mfrow=c(1,2))
+qqnorm(babies$gestation, main = "a normal plot");qqline(babies$gestation)
+boxplot(babies$gestation, horizontal = T)
+hist(babies$gestation)
+
+#age
+par(mfrow=c(1,2))
+qqnorm(babies$age, main = "a normal plot");qqline(babies$age)
+boxplot(babies$age, horizontal = T)
+hist(babies$gestation)
+
+#height and weight
+par(mfrow=c(3,2))
+qqnorm(babies$ht, main = "a normal plot");qqline(babies$ht)
+boxplot(babies$ht, horizontal = T)
+simple.eda(babies$ht)
+qqnorm(babies$wt, main = "a normal plot");qqline(babies$wt)
+boxplot(babies$wt, horizontal = T)
+simple.eda(babies$wt)
+
+#The Simple data set iq contains simulated scores on a hypothetical IQ test. What analysis is appropriate for
+#measuring the center of the distribution? Why? (Note: the data reads in as a list.)
+#par(mfrow=c(1,1))
+
+data(iq)
+help(iq)
+qqnorm(iq);qqline(iq)
+mean(iq)
+simple.eda(iq)
+
+
+#
+data("trees")
+help("trees")
+par(mfrow=c(1,1))
+boxplot(trees$Girth, horizontal = T)
+qqnorm(trees$Girth); qqline(trees$Girth)
+simple.eda(trees$Girth)
+simple.eda(trees$Height)
+simple.eda(trees$Volume)
+
+
+#The Simple data set slc contains data on red 
+#blood cell sodium-lithium countertransport activity for 190
+#individuals. Describe the shape of the distribution, 
+#estimate the center, state what is an appropriate measure
+
+data(slc)
+help(slc)
+hist(slc)
+simple.eda(slc)
+
+?rt
+par(mfrow=c(1,3))
+x=rt(100,2)
+y = rt(100,10)
+z = rt(100,25)
+
+hist(x)
+hist(y)
+hist(z)
