@@ -1385,6 +1385,17 @@ simple.eda(trees$Girth)
 simple.eda(trees$Height)
 simple.eda(trees$Volume)
 
+#Black-Scholes theory analysis
+data("dowdata")
+help("dowdata")
+head(dowdata)
+x = dowdata[['Close']]
+n = length(x)
+z = log(x[2:n]/x[1:(n-1)])
+simple.eda(z)
+
+
+
 
 #The Simple data set slc contains data on red 
 #blood cell sodium-lithium countertransport activity for 190
