@@ -1426,6 +1426,13 @@ simple.eda(results)
 mean(results)
 median(results)
 qqnorm(results); qqline(results)
+boxplot(results, horizontal = T)
+
+
+#Galton stuff
+library(UsingR)
+install.packages("UsingR")
+
 
 
 
