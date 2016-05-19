@@ -1432,7 +1432,35 @@ boxplot(results, horizontal = T)
 #Galton stuff
 library(UsingR)
 install.packages("UsingR")
+data(galton)
+library(psych)
+install.packages(psych)
+library(HistData)
+data("Galton")
+help("Galton")
+?install.packages
+?library
 
 
-
+#to load galton
+library(HistData)
+data("Galton")
+#r package is a collection of code data 
+#an r library is a directory where packages are stored
+library(UsingR)
+library(HistData)
+data("Galton")
+help("galton")
+library(reshape)
+long = melt(galton)
+head(galton)
+str(long)
+head(long)
+nrow(galton)
+nrow(long)
+?melt
+g = ggplot(long, aes(x=value, fill=variable))
+g = g + geom_histogram(colour="black", binwidth = 1)
+g= g + facet_grid(.~variable)
+g
 
