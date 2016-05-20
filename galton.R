@@ -100,5 +100,13 @@ mean(z)
 #standard deviation 1
 sd(z)
 
+#correlation [-1,1]
+#measure the strength of linearity between x and y
+cor(x,z)
+cor(x,x)
+
+#galton data
+#child.height = intercept + parent.height*slope
+#linear least square LLS
 
 
