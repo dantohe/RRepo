@@ -16,3 +16,14 @@ newdata = data.frame(wt=new.data)
 predict(model, newdata, interval = "prediction")
         
         
+head(mtcars$wt/2)
+
+x=mtcars$wt/2
+y=mtcars$mpg
+summary(lm(y~x))
+
+x=runif(100, 50,200)
+head(x)
+y=25+3*x
+simple.lm(x,y)
+simple.lm(x/100,y)
