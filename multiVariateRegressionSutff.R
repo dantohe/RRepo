@@ -254,5 +254,6 @@ nrow(swiss)
 #RSS residuals sum of sqaures
 #Df degree of freedom from going from one mode to another
 
+plot(jitter(child,4) ~ parent,galton)
 
 
