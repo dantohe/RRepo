@@ -1,5 +1,5 @@
 ---
-title: "Regression Model: Cars And MPG"
+title: "Regression Models: Cars And MPG"
 author: "DA"
 date: "May 27, 2016"
 output: pdf_document
@@ -11,7 +11,8 @@ Scenario: you work for Motor Trend, a magazine about the automobile industry. Lo
 - Quantify the MPG difference between automatic and manual transmissions  
 
 This brief analysis considers cars fuel economy and a set of variables, in particular the car transmission (automatic versus manual). We use mtcars dataset made available by Motor Trend Magazine.   
-Technically, we evaluate this relationship using linear regression.  
+Technically, we evaluate this relationship using linear regression. 
+
 Based on the dataset we show that the manual transmission has an advantage over the automatic one when it comes to MPG (miles per gallon) - see Figure 1.
 
 #The Data
