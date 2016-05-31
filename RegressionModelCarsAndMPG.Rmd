@@ -12,10 +12,10 @@ Scenario: you work for Motor Trend, a magazine about the automobile industry. Lo
 
 This brief analysis considers cars fuel economy and a set of variables, in particular the car transmission (automatic versus manual). We use mtcars dataset made available by Motor Trend Magazine.   
 Technically, we evaluate this relationship using linear regression. 
-
+--------
 Based on the dataset we show that the manual transmission has an advantage over the automatic one when it comes to MPG (miles per gallon) - see Figure 1.
 
-#The Data
+#The Data - performing data exploration
 
 Loading the mtcars dataset, data frame with 32 observations on 11 variables (source: https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html).  
 
@@ -31,11 +31,23 @@ Loading the mtcars dataset, data frame with 32 observations on 11 variables (sou
 [,10]	gear	Number of forward gears  
 [,11]	carb	Number of carburetors  
 
+Loading the libraries and supressing the feedback messages.
+
+```{r results='hide', message=FALSE, warning=FALSE}
+library(ggplot2)
+library(UsingR)
+data(mtcars)
+```
+
+Looking a bit into how the mpg variable is distributed.
+
 
 ```{r}
-data(mtcars)
 head(mtcars)
+simple.eda(mtcars$mpg)
 ```
+
+
 
 ##Shapiro-Wilk Test - checking on population   
 Using Shapiro-Wilk Normality Test and getting a p-value = 0.1229 which tranlates in the fact that we cannot reject  reject the NULL hypothesis that the samples came from a normal distribution.  
@@ -75,24 +87,3 @@ summary(best.model)
 #Appendix
 Figure 1: Which transmission achieves better mileage (Miles per Gallon)?  
 As we can see from the boxplot below there is a distinct difference that favors the manual transmission over the automatic when it comes to get better millage.
-
-```{r}
-library(ggplot2)
-data("mtcars")
-g = ggplot(mtcars, aes(factor(am), mpg, fill=factor(am)))
-g = g + geom_boxplot()
-g = g + geom_jitter(position=position_jitter(width=.2, height=1))
-g = g + scale_fill_discrete(name="Transmission", breaks=c("0", "1"),
-                            labels=c("Auto", "Manual"))
-g = g + ylab("Miles Per Gallon")
-g = g + xlab("Transmission")
-g
-```
-
-
-```{r}
-# par(mfrow=c(2, 2))
-plot(best.model)
-
-```
-
