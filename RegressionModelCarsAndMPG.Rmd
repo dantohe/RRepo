@@ -11,13 +11,22 @@ Scenario: you work for Motor Trend, a magazine about the automobile industry. Lo
 - Quantify the MPG difference between automatic and manual transmissions  
 
 This brief analysis considers cars fuel economy and a set of variables, in particular the car transmission (automatic versus manual). We use mtcars dataset made available by Motor Trend Magazine.   
-Technically, we evaluate this relationship using linear regression. 
+Technically, we evaluate this relationship using linear regression.   
 --------
-Based on the dataset we show that the manual transmission has an advantage over the automatic one when it comes to MPG (miles per gallon) - see Figure 1.
+Based on the dataset we show that the manual transmission has an advantage over the automatic one when it comes to MPG (miles per gallon) - see Figure 1.  
+
+#Prerequsites
+Loading the libraries and the dataset.  
+```{r results='hide', message=FALSE, warning=FALSE}
+library(ggplot2)
+library(UsingR)
+require(GGally)
+data(mtcars)
+```
+
 
 #The Data - performing data exploration
-
-Loading the mtcars dataset, data frame with 32 observations on 11 variables (source: https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html).  
+The mtcars dataset, data frame with 32 observations on 11 variables (source: https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html).  
 
 [, 1]	mpg	Miles/(US) gallon  
 [, 2]	cyl	Number of cylinders  
@@ -31,50 +40,47 @@ Loading the mtcars dataset, data frame with 32 observations on 11 variables (sou
 [,10]	gear	Number of forward gears  
 [,11]	carb	Number of carburetors  
 
-Loading the libraries and supressing the feedback messages.
-
-```{r results='hide', message=FALSE, warning=FALSE}
-library(ggplot2)
-library(UsingR)
-data(mtcars)
-```
-
-Looking a bit into how the mpg variable is distributed using some normal probablity plots.
+##MPG distribution
+As MPG is the main subject of interest we are looking into how this variable is distributed using some normal probability plots.
 ```{r}
 simple.eda(mtcars$mpg)
 ```
 We see in the above plots that:  
 - the cars within 15 to 25 mpg are more frequent (histogram)  
-- the mpg is symetrically distributed with a regular tale, as opposed to skewed (boxplot)  
-- the QQ plot indicates that we can aproximate this distribution as normal  
+- the mpg is symmetrically distributed with a regular tale, as opposed to skewed (boxplot)  
+- the QQ plot indicates that we can approximate this distribution as normal  
 
-##Shapiro-Wilk Test - checking on population   
-Using Shapiro-Wilk Normality Test and getting a p-value = 0.1229 which tranlates in the fact that we cannot reject  reject the NULL hypothesis that the samples came from a normal distribution.  
+###Shapiro-Wilk Test - MPG distribution   
+Using Shapiro-Wilk Normality Test and getting a p-value = 0.1229 which translates in the fact that we cannot reject  reject the NULL hypothesis that the samples came from a normal distribution.  
 
 ```{r}
 shapiro.test(mtcars$mpg)
 ```
 
-##Exploring correlations
+###Exploring correlations
 We pick a few variables and look for correlations between them. We are mostly into correlations with MPGs.
 
 ```{r}
 
-cp1 = ggpairs(mtcars, columns =c("mpg","cyl","am"),  
-             columnLabels = c("MPG", "Numbers of Cylinders","Transmission"),              lower = list(
-             continuous = "smooth",
-             combo = "facetdensity", diag = NULL)
+cp1 = ggpairs(mtcars, columns =c("mpg","cyl","am"),columnLabels = c("MPG", "Num.of Cylinders","Transmission"), lower = list(
+             continuous = "smooth",combo = "facetdensity", diag = NULL)
 )
 cp1
 ```
 
+We a correlation factor of -0.852 between MPG and the Number of Cylinders which we can interpret as a strong downhill linear relationship which makes sense as a greater number of cylinders means generally a bigger engine consuming more gas.  
+MPG and transmission correlate with a coefficient of 0.6 which is a moderate positive relationship. The data set models the manual transmission as 1 and automatic as 0, hence one can say that a manual transmission tends to provide a better MPG.
 
 
-##T-test - comparing the means of MPG and type of transmission
-We get a very small p-value which translates in the fact that the difference in means is not by chance but indeed there is clear difference in these two populations. So we reject the NULL hypothesis: "these two samples have the same means."  
+
+###T-test - comparing the means of MPG, transmission and number of cylindres
+
 ```{r}
 t.test(mtcars$mpg, mtcars$am, var.equal=TRUE, paired=FALSE)
+t.test(mtcars$mpg, mtcars$cyl, var.equal=TRUE, paired=FALSE)
 ```
+
+We get a very small p-value which translates in the fact that the difference in means is not by chance but indeed there is clear difference in these two populations. So we reject the NULL hypothesis: "these two samples have the same means."  
 
 
 #Regression  Models
@@ -86,13 +92,13 @@ best.model <- step(initial.model, direction = "both")
 ```
 
 ##Sumarizing the best regression model
-The most significant variables are idenfied as being:   
+The most significant variables are identified as being:   
 - the weight of the car (wt)   
 - the 1/4 mile time (qsec)
-The trasnmission seems to be of a lower importance as predictor of MPG.
+The transmission seems to be of a lower importance as predictor of MPG.
 
-We see a really small p-value (1.21e-11 musch smaller than 0.05) meaning a good model.
-We also see an decent R-squared: 0.8497 which tranlates to outcome variance explained by this model.
+We see a really small p-value (1.21e-11 much smaller than 0.05) meaning a good model.
+We also see an decent R-squared: 0.8497 which translates to outcome variance explained by this model.
 ```{r}
 summary(best.model)
 ```
