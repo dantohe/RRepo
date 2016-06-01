@@ -39,15 +39,14 @@ library(UsingR)
 data(mtcars)
 ```
 
-Looking a bit into how the mpg variable is distributed.
-
-
+Looking a bit into how the mpg variable is distributed using some normal probablity plots.
 ```{r}
-head(mtcars)
 simple.eda(mtcars$mpg)
 ```
-
-
+We see in the above plots that:  
+- the cars within 15 to 25 mpg are more frequent (histogram)  
+- the mpg is symetrically distributed with a regular tale, as opposed to skewed (boxplot)  
+- the QQ plot indicates that we can aproximate this distribution as normal  
 
 ##Shapiro-Wilk Test - checking on population   
 Using Shapiro-Wilk Normality Test and getting a p-value = 0.1229 which tranlates in the fact that we cannot reject  reject the NULL hypothesis that the samples came from a normal distribution.  
@@ -56,11 +55,27 @@ Using Shapiro-Wilk Normality Test and getting a p-value = 0.1229 which tranlates
 shapiro.test(mtcars$mpg)
 ```
 
+##Exploring correlations
+We pick a few variables and look for correlations between them. We are mostly into correlations with MPGs.
+
+```{r}
+
+cp1 = ggpairs(mtcars, columns =c("mpg","cyl","am"),  
+             columnLabels = c("MPG", "Numbers of Cylinders","Transmission"),              lower = list(
+             continuous = "smooth",
+             combo = "facetdensity", diag = NULL)
+)
+cp1
+```
+
+
+
 ##T-test - comparing the means of MPG and type of transmission
 We get a very small p-value which translates in the fact that the difference in means is not by chance but indeed there is clear difference in these two populations. So we reject the NULL hypothesis: "these two samples have the same means."  
 ```{r}
 t.test(mtcars$mpg, mtcars$am, var.equal=TRUE, paired=FALSE)
 ```
+
 
 #Regression  Models
 Building a regression model using Backward Stepwise Regression (starting with all predictors and removes the ones that are not statistically significant).
