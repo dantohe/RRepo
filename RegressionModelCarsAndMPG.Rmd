@@ -58,11 +58,15 @@ shapiro.test(mtcars$mpg)
 ```
 
 ###Exploring correlations
-We pick a few variables and look for correlations between them. We are mostly into correlations with MPGs.
+We pick a few variables and look for correlations between them. We ignored displacement, horsepower as it corelates with cylinders. We are mostly into correlations with MPGs.
 
 ```{r}
-
-cp1 = ggpairs(mtcars, columns =c("mpg","cyl","am"),columnLabels = c("MPG", "Num.of Cylinders","Transmission"), lower = list(
+cor(mtcars[,c("mpg", "cyl", "wt","am", "gear")])
+```
+We see a strong negative (-0.87) corelation between MPG and the weight of the car (as the car becomes heavier it gets lesser MPG). NUmber of gears dones't seem to be an inteersting variable.    
+Another way to look into correlations:    
+```{r}
+cp1 = ggpairs(mtcars, columns =c("mpg", "cyl", "wt","am"),columnLabels = c("MPG", "Cylinders","Wight", "Transmission"), lower = list(
              continuous = "smooth",combo = "facetdensity", diag = NULL)
 )
 cp1
