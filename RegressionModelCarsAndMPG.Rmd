@@ -58,7 +58,7 @@ shapiro.test(mtcars$mpg)
 ```
 
 ###Exploring correlations
-We pick a few variables and look for correlations between them. We ignored displacement, horsepower as it corelates with cylinders. We are mostly into correlations with MPGs.
+We pick a few variables and look for correlations between them. We ignored displacement, horsepower as they corelate with cylinders. We are mostly into correlations with MPGs.
 
 ```{r}
 cor(mtcars[,c("mpg", "cyl", "wt","am", "gear")])
@@ -72,7 +72,7 @@ cp1 = ggpairs(mtcars, columns =c("mpg", "cyl", "wt","am"),columnLabels = c("MPG"
 cp1
 ```
 
-We a correlation factor of -0.852 between MPG and the Number of Cylinders which we can interpret as a strong downhill linear relationship which makes sense as a greater number of cylinders means generally a bigger engine consuming more gas.  
+We have a correlation factor of -0.852 between MPG and the Number of Cylinders which we can interpret as a strong downhill linear relationship which makes sense as a greater number of cylinders means generally a bigger engine consuming more gas.  
 MPG and transmission correlate with a coefficient of 0.6 which is a moderate positive relationship. The data set models the manual transmission as 1 and automatic as 0, hence one can say that a manual transmission tends to provide a better MPG.
 
 
@@ -88,6 +88,57 @@ We get a very small p-value which translates in the fact that the difference in 
 
 
 #Regression  Models
+##Single Variable Models
+Starting by building some simple (non multivariable) regression model: mpg function of cylenders, weight and transmission
+```{r}
+model.1 = lm(mpg~cyl, data = mtcars)
+coef(model.1)
+model.2 = lm(mpg~wt, data = mtcars)
+coef(model.2)
+model.3 = lm(mpg~am, data = mtcars)
+coef(model.3)
+```
+We see intercepts of 37, 37 and 17 respectively. The slope is negative for the firt two models and positive for the third that we interpret as follows:  
+- for every additional cylinder we lose 2.9 MPGs  
+- for every 1000 pounds of additional weight we lose 5.3 MPGs  
+- manual transmission provides a gain of 7 MPGs  
+
+
+##Residual Analysis
+It is considered that residual standard error is a better aproximation of the model goodness than the R-squared.
+```{r}
+summary(model.1)$sigma
+summary(model.1)$r.squared
+summary(model.2)$sigma
+summary(model.2)$r.squared
+summary(model.3)$sigma
+summary(model.3)$r.squared
+```
+We see above the the second model (vehicle weight as independent variable) performs best as MPG predictor with a residual standard error of 3 and an R-squared of 0.75 while the third one (trasmission) si the worst with an error of 4.9 and a R-sqaured of 0.36.  
+
+##Plotting Residuals  
+We plot as example the model using the weight as independent variable.    
+```{r}
+plot(mtcars$wt, resid(model.2), xlab = "Car Weight", ylab = "Residuals MPG", bg = "lightblue", col = "black", cex = 2, pch = 21,frame = FALSE)
+abline(h = 0, lwd = 2)
+for (i in 1 : length(mtcars$wt)) 
+        lines(c(mtcars$wt[i], mtcars$wt[i]), c(resid(model.2)[i], 0), col = "red" , lwd = 2)
+```
+
+We see a patternless plot.  
+
+##Comparing the models  
+
+We use Anova to compare the three models.   
+```{r}
+anova(model.1, model.2, model.3)
+```
+
+Multivariable Regression
+
+
+
+
 Building a regression model using Backward Stepwise Regression (starting with all predictors and removes the ones that are not statistically significant).
 
 ```{r, results="hide"}
@@ -105,6 +156,8 @@ We see a really small p-value (1.21e-11 much smaller than 0.05) meaning a good m
 We also see an decent R-squared: 0.8497 which translates to outcome variance explained by this model.
 ```{r}
 summary(best.model)
+m1 = lm(mpg ~ wt + disp + cyl+gear+am, data = mtcars);
+Anova(m1)
 ```
 
 

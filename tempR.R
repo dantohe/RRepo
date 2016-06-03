@@ -23,6 +23,17 @@ g = ggpairs(mtcars.reduced.2, lower = list(
 
 
 
+g = ggpairs(mtcars)
+
+g
+
+cor.table = cor(mtcars)
+cor.table
+str(cor.table)
+nrow(cor.table)
+cor.table[mpg>0.6]
+
+cor(mtcars[,c("mpg", "cyl", "wt","am", "gear")])
 
 g = ggpairs(mtcars, columns =c("am","cyl","gear", "mpg"), lower = list(
         continuous = "smooth",
@@ -62,3 +73,56 @@ g = g + geom_point(size = 7, colour = "black", alpha=0.5)
 g = g + geom_point(size = 5, colour = "blue", alpha=0.2)
 g = g + geom_smooth(method = "lm", colour = "black")
 g
+
+g = ggplot(mtcars, aes(x = cyl, y = am))
+g = g + xlab("NUmber of Cylinders")
+g = g + ylab("MPG")
+g = g + geom_point(size = 7, colour = "black", alpha=0.5)
+g = g + geom_point(size = 5, colour = "blue", alpha=0.2)
+g = g + geom_smooth(method = "lm", colour = "black")
+g
+model.1 = lm(mpg~cyl, data = mtcars)
+summary(model.1)
+coef(model.1)
+model.2 = lm(mpg~wt, data = mtcars)
+summary(model.2)
+coef(model.2)
+model.3 = lm(mpg~am, data = mtcars)
+coef(model.3)
+summary(model.3)
+summary(model.1)$sigma
+summary(model.1)$r.squared
+
+summary(model.2)$sigma
+summary(model.3)$sigma
+anova(model.1, model.2, model.3)
+
+
+plot(diamond$carat, diamond$price,  
+     xlab = "Mass (carats)", 
+     ylab = "Price (SIN $)", 
+     bg = "lightblue", 
+     col = "black", cex = 2, pch = 21,frame = FALSE)
+abline(fit, lwd = 2)
+for (i in 1 : n) 
+        lines(c(x[i], x[i]), c(y[i], yhat[i]), col = "red" , lwd = 2)
+
+
+data(diamond)
+y <- diamond$price; x <- diamond$carat; n <- length(y)
+fit <- lm(y ~ x)
+e <- resid(fit)
+yhat <- predict(fit)
+max(abs(e -(y - yhat)))
+max(abs(e - (y - coef(fit)[1] - coef(fit)[2] * x)))
+
+plot(x, e, xlab = "Mass (carats)", ylab = "Residuals (SIN $)", bg = "lightblue", col = "black", cex = 2, pch = 21,frame = FALSE)
+abline(h = 0, lwd = 2)
+for (i in 1 : n) 
+        lines(c(x[i], x[i]), c(e[i], 0), col = "red" , lwd = 2)
+
+
+plot(mtcars$wt, resid(lm(mtcars$mpg, mtcars$wt)), xlab = "Car Weight", ylab = "Residuals MPG", bg = "lightblue", col = "black", cex = 2, pch = 21,frame = FALSE)
+abline(h = 0, lwd = 2)
+for (i in 1 : length(mtcars$wt)) 
+        lines(c(x[i], x[i]), c(e[i], 0), col = "red" , lwd = 2)
