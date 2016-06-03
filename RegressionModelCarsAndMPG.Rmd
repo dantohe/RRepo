@@ -134,11 +134,7 @@ We use Anova to compare the three models.
 anova(model.1, model.2, model.3)
 ```
 
-Multivariable Regression
-
-
-
-
+##Multivariable Regression  
 Building a regression model using Backward Stepwise Regression (starting with all predictors and removes the ones that are not statistically significant).
 
 ```{r, results="hide"}
@@ -146,7 +142,7 @@ initial.model <- lm(mpg ~., data= mtcars)
 best.model <- step(initial.model, direction = "both")
 ```
 
-##Sumarizing the best regression model
+###Sumarizing the best regression model
 The most significant variables are identified as being:   
 - the weight of the car (wt)   
 - the 1/4 mile time (qsec)
@@ -157,7 +153,7 @@ We also see an decent R-squared: 0.8497 which translates to outcome variance exp
 ```{r}
 summary(best.model)
 m1 = lm(mpg ~ wt + disp + cyl+gear+am, data = mtcars);
-Anova(m1)
+anova(m1)
 ```
 
 
