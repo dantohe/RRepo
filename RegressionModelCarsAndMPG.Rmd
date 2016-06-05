@@ -11,9 +11,8 @@ Scenario: you work for Motor Trend, a magazine about the automobile industry. Lo
 - Quantify the MPG difference between automatic and manual transmissions  
 
 This brief analysis considers cars fuel economy and a set of variables, in particular the car transmission (automatic versus manual). We use mtcars dataset made available by Motor Trend Magazine.   
-Technically, we evaluate this relationship using linear regression.   
---------
-Based on the dataset we show that the manual transmission has an advantage over the automatic one when it comes to MPG (miles per gallon) - see Figure 1.  
+
+We perform exploratory data analysis followed by finding predictors for MPG. The first part of analysis looks into the variables and picks some and evaluates their performance as predictors for MPG. In the second part we use multivariable regression where we allow an automatic selection of the set of best predictors.
 
 #Prerequsites
 Loading the libraries and the dataset.  
@@ -21,6 +20,7 @@ Loading the libraries and the dataset.
 library(ggplot2)
 library(UsingR)
 require(GGally)
+library(relaimpo)
 data(mtcars)
 ```
 
@@ -58,12 +58,12 @@ shapiro.test(mtcars$mpg)
 ```
 
 ###Exploring correlations
-We pick a few variables and look for correlations between them. We ignored displacement, horsepower as they corelate with cylinders. We are mostly into correlations with MPGs.
+We pick a few variables and look for correlations between them. We ignored displacement, horsepower as they correlate with cylinders. We are mostly into correlations with MPGs.
 
 ```{r}
 cor(mtcars[,c("mpg", "cyl", "wt","am", "gear")])
 ```
-We see a strong negative (-0.87) corelation between MPG and the weight of the car (as the car becomes heavier it gets lesser MPG). NUmber of gears dones't seem to be an inteersting variable.    
+We see a strong negative (-0.87) correlation between MPG and the weight of the car (as the car becomes heavier it gets lesser MPG). Number of gears doesn't seem to be an interesting variable.    
 Another way to look into correlations:    
 ```{r}
 cp1 = ggpairs(mtcars, columns =c("mpg", "cyl", "wt","am"),columnLabels = c("MPG", "Cylinders","Wight", "Transmission"), lower = list(
@@ -89,7 +89,7 @@ We get a very small p-value which translates in the fact that the difference in 
 
 #Regression  Models
 ##Single Variable Models
-Starting by building some simple (non multivariable) regression model: mpg function of cylenders, weight and transmission
+Starting by building some simple (non multivariable) regression model: mpg function of cylinders, weight and transmission
 ```{r}
 model.1 = lm(mpg~cyl, data = mtcars)
 coef(model.1)
@@ -98,14 +98,14 @@ coef(model.2)
 model.3 = lm(mpg~am, data = mtcars)
 coef(model.3)
 ```
-We see intercepts of 37, 37 and 17 respectively. The slope is negative for the firt two models and positive for the third that we interpret as follows:  
+We see intercepts of 37, 37 and 17 respectively. The slope is negative for the first two models and positive for the third that we interpret as follows:  
 - for every additional cylinder we lose 2.9 MPGs  
 - for every 1000 pounds of additional weight we lose 5.3 MPGs  
 - manual transmission provides a gain of 7 MPGs  
 
 
 ##Residual Analysis
-It is considered that residual standard error is a better aproximation of the model goodness than the R-squared.
+It is considered that residual standard error is a better approximation of the model goodness than the R-squared.
 ```{r}
 summary(model.1)$sigma
 summary(model.1)$r.squared
@@ -114,7 +114,7 @@ summary(model.2)$r.squared
 summary(model.3)$sigma
 summary(model.3)$r.squared
 ```
-We see above the the second model (vehicle weight as independent variable) performs best as MPG predictor with a residual standard error of 3 and an R-squared of 0.75 while the third one (trasmission) si the worst with an error of 4.9 and a R-sqaured of 0.36.  
+We see above the the second model (vehicle weight as independent variable) performs best as MPG predictor with a residual standard error of 3 and an R-squared of 0.75 while the third one (transmission) is the worst with an error of 4.9 and a R-squared of 0.36.  
 
 ##Plotting Residuals  
 We plot as example the model using the weight as independent variable.    
@@ -125,7 +125,7 @@ for (i in 1 : length(mtcars$wt))
         lines(c(mtcars$wt[i], mtcars$wt[i]), c(resid(model.2)[i], 0), col = "red" , lwd = 2)
 ```
 
-We see a patternless plot.  
+We see a pattern less plot.  
 
 ##Comparing the models  
 
@@ -133,14 +133,36 @@ We use Anova to compare the three models.
 ```{r}
 anova(model.1, model.2, model.3)
 ```
+The second model with an RSS of 278 is the winner.
 
 ##Multivariable Regression  
+
+###Selecting the Right Predictors 
 Building a regression model using Backward Stepwise Regression (starting with all predictors and removes the ones that are not statistically significant).
 
 ```{r, results="hide"}
 initial.model <- lm(mpg ~., data= mtcars)
 best.model <- step(initial.model, direction = "both")
 ```
+
+##Analyzing the selected predictors  
+
+We are looking into the independent variables picked. 
+```{r}
+summary(best.model)
+```
+We see (p value) the weight of the car and qsec making a bigger difference than the transmission.  
+We also calculate the relative importance of each variable using the relaimpo library.  
+```{r}
+calc.relimp(best.model)$lmg
+```
+We can find above the r-squared averaged over orderings among regressors - this time weight is again most important regressor. The transmission come in second followed by qsec.  
+We can also plot the relative importance of each independent variable by bootstrapping using 500 samples.  
+```{r}
+boot <- boot.relimp(best.model, b = 500, rank = TRUE, diff = TRUE, rela = TRUE)
+plot(booteval.relimp(boot,sort=TRUE))
+```
+
 
 ###Sumarizing the best regression model
 The most significant variables are identified as being:   
@@ -157,7 +179,3 @@ anova(m1)
 ```
 
 
-
-#Appendix
-Figure 1: Which transmission achieves better mileage (Miles per Gallon)?  
-As we can see from the boxplot below there is a distinct difference that favors the manual transmission over the automatic when it comes to get better millage.
