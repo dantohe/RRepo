@@ -241,9 +241,9 @@ this data frame as `sfo_feb_flights`. How many flights meet these criteria?
 </ol>
 
 ```{r sfo-feb-flights}
-# type your code for Question 1 here, and Knit
-
+sfo_feb_flights = nycflights %>% filter(dest=="SFO", month==2)
 ```
+**Answer 68**  
 
 
 2. Make a histogram and calculate appropriate summary statistics for **arrival** 
@@ -258,8 +258,11 @@ delays of `sfo_feb_flights`. Which of the following is false?
 
 ```{r sfo-feb-flights-arrival-delays}
 # type your code for Question 2 here, and Knit
-
+sfo_feb_flights %>% summarise(mean.arrival.delay = mean(arr_delay) , median.arrival.delay = median(arr_delay), sd.arrival.delay= sd(arr_delay) )
+boxplot(sfo_feb_flights$arr_delay, horizontal = T)
 ```
+
+**Answer: No flight is delayed more than 2 hours.**  
 
 Another useful functionality is being able to quickly calculate summary 
 statistics for various groups in your data frame. For example, we can modify the 
@@ -287,9 +290,9 @@ IQR of arrival delays?
 </ol>
 
 ```{r sfo-feb-flights-arrival-delays-carrier}
-# type your code for Question 3 here, and Knit
-
+sfo_feb_flights %>% group_by(carrier) %>% summarise(median.arr.delay = median(arr_delay), iqr.arr.delay = IQR(arr_delay))
 ```
+**Answer: Delat and UA**  
 
 ### Departure delays over months
 
@@ -321,7 +324,10 @@ nycflights %>%
 </ol>
 
 ```{r highest-avg-dep-delay-month}
-# type your code for Question 4 here, and Knit
+nycflights %>%
+  group_by(month) %>%
+  summarise(mean_dd = mean(dep_delay)) %>%
+  arrange(desc(mean_dd))
 
 ```
 
