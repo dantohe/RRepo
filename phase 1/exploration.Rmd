@@ -292,7 +292,7 @@ IQR of arrival delays?
 ```{r sfo-feb-flights-arrival-delays-carrier}
 sfo_feb_flights %>% group_by(carrier) %>% summarise(median.arr.delay = median(arr_delay), iqr.arr.delay = IQR(arr_delay))
 ```
-**Answer: Delat and UA**  
+**Answer: Delta and UA**  
 
 ### Departure delays over months
 
@@ -328,7 +328,6 @@ nycflights %>%
   group_by(month) %>%
   summarise(mean_dd = mean(dep_delay)) %>%
   arrange(desc(mean_dd))
-
 ```
 
 
@@ -342,7 +341,10 @@ nycflights %>%
 </ol>
 
 ```{r highest-median-dep-delay-month}
-# type your code for Question 5 here, and Knit
+nycflights %>%
+  group_by(month) %>%
+  summarise(mean_dd = median(dep_delay)) %>%
+  arrange(desc(mean_dd))
 
 ```
 
@@ -426,10 +428,13 @@ which NYC airport would you choose to fly out of?
 </ol>
 
 ```{r on-time-dep-perc-airport}
-# type your code for Question 7 here, and Knit
+nycflights %>%
+  group_by(origin) %>%
+  summarise(ot_dep_rate = sum(dep_type == "on time") / n()) %>%
+  arrange(desc(ot_dep_rate))
 
 ```
-
+**Answer: LGA**
 We can also visualize the distribution of on on time departure rate across 
 the three airports using a segmented bar plot.
 
@@ -455,10 +460,13 @@ Google this tail number to find out more about the aircraft.
 </ol>
 
 ```{r fastest-avg-speed-tailnum}
-# type your code for Question 8 here, and Knit
-
+data(nycflights)
+nycflights <- nycflights %>%
+  mutate(avg_speed = distance /(air_time/60)) %>% select(avg_speed, tailnum)
+nycflights[nycflights$avg_speed==max(nycflights$avg_speed),]
+data(nycflights)
 ```
-
+**answer N666DN**
 
 9.  Make a scatterplot of `avg_speed` vs. `distance`. Which of the following is true 
 about the relationship between average speed and distance. 
@@ -471,10 +479,11 @@ about the relationship between average speed and distance.
 </ol>
 
 ```{r avg-speed-dist-scatter}
-# type your code for Question 9 here, and Knit
-
+nycflights <- nycflights %>%
+  mutate(avg_speed = distance /(air_time/60))
+plot(nycflights$avg_speed, nycflights$distance)
 ```
-
+** positive assoc**
 
 10.  Suppose you define a flight to be "on time" if it gets to the destination on 
 time or earlier than expected, regardless of any departure delays. Mutate the data 
@@ -485,6 +494,7 @@ were `"delayed"` departing arrive `"on time"`?
 [NUMERIC INPUT]
 
 ```{r on-time-arr-perc}
-# type your code for Question 9 here, and Knit
-
+data(nycflights)
+nycflights <- nycflights %>%
+  mutate(arr_type = ifelse(arr_delay <= 0, "on time", "delayed"))
 ```
