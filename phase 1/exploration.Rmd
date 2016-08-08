@@ -329,7 +329,7 @@ nycflights %>%
   summarise(mean_dd = mean(dep_delay)) %>%
   arrange(desc(mean_dd))
 ```
-
+**Answer: July**
 
 5.  Which month has the highest median departure delay from an NYC airport?
 <ol>
@@ -347,7 +347,7 @@ nycflights %>%
   arrange(desc(mean_dd))
 
 ```
-
+**Answer: December**
 
 6.  Is the mean or the median a more reliable measure for deciding which month(s) to 
 avoid flying if you really dislike delayed flights, and why? 
@@ -367,6 +367,7 @@ side-by-side box plots:
 ggplot(nycflights, aes(x = factor(month), y = dep_delay)) +
   geom_boxplot()
 ```
+**Answer: Median would be more reliable as the distribution of delays is skewed.**
 
 There is some new syntax here: We want departure delays on the y-axis and the
 months on the x-axis to produce side-by-side box plots. Side-by-side box plots
